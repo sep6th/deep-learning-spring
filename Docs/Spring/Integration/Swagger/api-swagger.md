@@ -10,7 +10,7 @@
 
 1.添加Maven依赖
 
-```
+```xml
 <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger2</artifactId>
@@ -28,7 +28,7 @@
 
 3.自定义SwaggerConfig类
 
-```
+```java
 /** 
  * The Apache License 2.0
  * Copyright (c) 2018 sep6th
@@ -74,7 +74,7 @@ public class SwaggerConfig{
 
 4.MVC配置
 
-```
+```xml
     <!-- 配置扫描器, 使得@Controller注解生效 -->
     <context:component-scan base-package="com.sep6th.*.controller">
         <!-- 用swagger页面操作api时,不配置报406 -->
@@ -98,7 +98,7 @@ public class SwaggerConfig{
 
 5.jsp页面
 
-```
+```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -153,7 +153,7 @@ window.onload = function(){
 
 6.Controller
 
-```
+```java
 @Controller
 public class ApiController {
 
