@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>org.springframework.samples.service.service</groupId>
+  	<artifactId>cache-ehcache</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+  
+	<parent>
+		<groupId>com.sep6th</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0</version>
+  	</parent>
+  	
+  	
+  	<properties>
+    	<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<spring-framework.version>5.0.2.RELEASE</spring-framework.version>
+		<ehcache.version>2.10.2</ehcache.version>
+  	</properties>
+
+	
+	<dependencies>
+		<!-- Spring 含有对于缓存功能的抽象封装接口(貌似，我的demo中没用到) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		
+		<!-- Ehcache -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+		  	<artifactId>ehcache</artifactId>
+		  	<version>${ehcache.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<port>8090</port>
+					<useBodyEncodingForURI>true</useBodyEncodingForURI>
+					<path>/</path>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-compiler-plugin</artifactId> 
+				<version>3.7.0</version>
+				<configuration> 
+					<source>${maven.compiler.source}</source> 
+					<target>${maven.compiler.target}</target> 
+					<encoding>UTF-8</encoding>
+				</configuration> 
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>
