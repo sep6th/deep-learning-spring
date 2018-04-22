@@ -1,17 +1,17 @@
-#websocket
+# websocket
 
-##WebSocket是什么？
+## WebSocket是什么？
 WebSocket 是基于TCP的一种网络通信协议。它实现了浏览器与服务器全双工通信——允许服务器主动发送信息给客户端。
 
-##为什么需要WebSocket ？
+## 为什么需要WebSocket ？
 HTTP 协议是一种无状态的、无连接的、单向的应用层协议。它采用了请求/响应模型。通信请求只能由客户端发起，服务端对请求做出应答处理，无法实现服务器主动向客户端发起消息。注定了如果服务器有连续的状态变化，客户端要获知就非常麻烦。大多数 Web 应用程序将通过频繁的异步AJAX请求实现长轮询。轮询的效率低，非常浪费资源。
 
-##WebSocket如何工作？
+## WebSocket如何工作？
 Web浏览器和服务器都必须实现 WebSocket协议来建立和维护连接。由于WebSocket连接长期存在，与典型的HTTP连接不同，对服务器有重要的影响。
 
-##WebSocket服务端
-###采用javax.websocket实现
-####添加maven依赖
+## WebSocket服务端
+### 采用javax.websocket实现
+#### 添加maven依赖
 
 ```xml
 <dependency>
@@ -23,7 +23,7 @@ Web浏览器和服务器都必须实现 WebSocket协议来建立和维护连接�
 
 ```
 
-##定义websocket服务器端
+## 定义websocket服务器端
 
 
 ```java
@@ -148,7 +148,7 @@ public class WebSocketServe {
 }
 ```
 
-##WebSocket客户端
+## WebSocket客户端
 
 
 ```html
@@ -227,7 +227,7 @@ public class WebSocketServe {
 </script>
 </html>
 ```
-##拓展——http协议
+## 拓展——http协议
 
 HTTP是一个基于TCP/IP通信协议来传递数据，是一种无状态的、无连接的、单向的应用层协议。
 主要特点
@@ -236,17 +236,3 @@ HTTP是一个基于TCP/IP通信协议来传递数据，是一种无状态的、�
 3.无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。
 4.无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。
 5、支持B/S及C/S模式。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
