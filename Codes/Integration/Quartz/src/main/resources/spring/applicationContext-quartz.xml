@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 作业的bean -->
+	<bean id="jobEntity" class="com.sep6th.core.job.TaskTime" />
+
+	<!-- 任务1配置 -->
+	<bean id="jobDetail_one" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+		<!-- 执行的类 --> 
+		<property name="targetObject">  
+            <ref bean="jobEntity" />  
+        </property>
+        <!-- 类中的方法 -->  
+        <property name="targetMethod">  
+            <value>first_Job</value>  
+        </property>
+	</bean>
+	<!-- 为任务1，添加定时 -->
+	<bean id="cronTrigger_one" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail"><ref bean="jobDetail_one" /></property>
+		<property name="cronExpression"><value>${task.first.cron}</value></property>
+	</bean>
+	
+	<!-- 任务2配置 -->
+	<bean id="jobDetail_two" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+		<!-- 执行的类 --> 
+		<property name="targetObject">  
+            <ref bean="jobEntity" />  
+        </property>
+        <!-- 类中的方法 -->  
+        <property name="targetMethod">  
+            <value>second_Job</value>  
+        </property>
+	</bean>
+	<!-- 为任务2，添加定时 -->
+	<bean id="cronTrigger_two" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail"><ref bean="jobDetail_two" /></property>
+		<property name="cronExpression"><value>${task.second.cron}</value></property>
+	</bean>
+
+	<!--总调度工厂-->
+	 <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"> 
+		<!-- 添加触发器 -->  
+        <property name="triggers">  
+            <list>  
+                <ref bean="cronTrigger_one" />  
+                <ref bean="cronTrigger_two" />  
+            </list>  
+        </property> 
+	</bean>
+	
+</beans>
