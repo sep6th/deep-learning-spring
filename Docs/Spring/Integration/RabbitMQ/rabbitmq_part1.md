@@ -42,13 +42,18 @@ MQ基本操作
 service rabbitmq-server start
 service rabbitmq-server stop
 service rabbitmq-server restart
-chkconfigrabbitmq-server on    //开机自启
+chkconfig rabbitmq-server on    //开机自启
 ```
-开启web界面管理工具，在浏览器中可以查看  
-
+开启web界面管理工具，在浏览器中可以查看
 ```
 rabbitmq-plugins enable rabbitmq_management
 service rabbitmq-server restart|start
+```
+如果启动不了，报hosts的问题。  
+解决方法：  
+```
+[root@www ~]# vim /etc/hosts
+10.77.210.11 www
 ```
 
 开启guest用户远程登录访问  
@@ -70,6 +75,13 @@ vim /etc/sysconfig/iptables
 浏览器访问：http://<ip>:15672
 输入默认的用户名guest、密码guest，进行登录
 
+添加新用户
+```
+rabbitmqctl list_users  //查看用户列表  
+rabbitmqctl add_user rabbit@user rabbit@pwd  //添加用户  
+rabbitmqctl set_user_tags rabbit@user administrator   //授权
+```
+
 ## 卸载RabbitMQ及Erlang环境
  
 ```
@@ -88,7 +100,6 @@ rpm -qa | grep erlang
 ```
 vim /etc/sysconfig/iptables
 ```
-
 
 ## 拓展
   
