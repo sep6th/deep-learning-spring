@@ -15,7 +15,7 @@ rpm -ivh erlang-20.3.4-1.el6.x86_64.rpm
 
 rabbitmq依赖于socat，因此在安装rabbitmq前要安装socat
 
-由于默认的CentOS-Base.repo源中没有socat，所以执行yum install socat会出现以下错误：No package socat available  
+由于默认的CentOS-Base.repo源中没有socat，所以执行yum install socat会出现以下错误：No package socat available  （补充：阿里巴巴的云服务器，不会报错，不需要安装阿里的软件源。）
 
 epel是yum的一个软件源，里面包含了许多基本源里没有的软件。  
 
